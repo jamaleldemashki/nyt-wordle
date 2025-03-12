@@ -110,31 +110,75 @@ h1{
     border-color: #c9b458;
   }
 
-  .hint-button {
-    background-color: #ffffff;
-    border: 2px solid #333;
+  /* Shared styling for both buttons */
+.hint-button {
+    /* Use a nice gradient */
+    background: linear-gradient(135deg, #6aaa64, #83c276);
+    color: #fff;
+    
+    /* Remove default border, give some rounding */
+    border: none;
     border-radius: 6px;
+    
+    /* Typography & spacing */
     padding: 10px 20px;
+    font-family: inherit;
     font-size: 1rem;
     font-weight: 600;
+    
+    /* Cursor & transitions */
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
   }
   
+  /* Hover effect: slightly enlarge and increase shadow */
   .hint-button:hover {
-    background-color: #333;
-    color: #fff;
     transform: scale(1.05);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
   }
-
+  
+  /* Active (clicked) effect: subtle shrink and remove shadow */
   .hint-button:active {
-    transform: scale(0.9);
+    transform: scale(0.97);
+    box-shadow: none;
   }
-
-  /* When button is disabled, let's gray it out */
+  
+  /* Disabled state: gray it out and remove pointer events */
   .hint-button:disabled {
-    background-color: #ffffff;
-    color: #999;
+    background: #ccc;
+    color: #666;
     cursor: not-allowed;
+    box-shadow: none;
     transform: none;
+  }
+  #hintButton {
+    background: linear-gradient(135deg, #6aaa64, #c8a333);
+  }
+  
+  #descriptionHintButton {
+    background: linear-gradient(135deg, #231691, hsl(0, 57%, 56%));
+  }
+  #descriptionContainer {
+    /* Spacing around the container */
+    display: none;
+    margin-top: 20px;
+    padding: 15px;
+    
+    /* Background & border */
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    
+    /* Subtle shadow for a “card” effect */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    
+    /* Typography */
+    font-style: italic;
+    font-size: 1.1em;
+    color: #333;
+    line-height: 1.5;
+    
+    /* Smooth transition for hover effect */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
   }
