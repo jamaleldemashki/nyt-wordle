@@ -24,7 +24,7 @@ A custom Wordle-like game that challenges players to guess a 5-letter word withi
 
 ---
 
-##Play the Game
+## Play the Game
 
 Enter guesses in the designated input or on-screen keyboard (depending on implementation).
 Use Hint #1 to reveal a correct-position letter if you’re stuck.
