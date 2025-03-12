@@ -11,6 +11,11 @@ let nextLetter = 0;
 let rightGuessString = WORDS[Math.floor(Math.random() * WORDS.length)];
 console.log(rightGuessString);
 
+let hintCount = 0;
+
+const helpBoxes = document.querySelectorAll(".help-box");
+let hintButton = document.getElementById("hintButton");
+
 /*
 So what does this code do? 
 initBoard creates one row for each guess we give the user and creates 5 boxes for each row.
@@ -203,3 +208,61 @@ const animateCSS = (element, animation, prefix = "animate__") =>
 
     node.addEventListener("animationend", handleAnimationEnd, { once: true });
   });
+
+hintButton.addEventListener("click", () => {
+  if (hintCount === 0) {
+    revealCorrectPositionLetter();
+    hintCount += 1;
+  } else if (hintCount === 1) {
+    revealWrongPositionLetter();
+    hintCount += 1;
+  }
+
+  //User is allowed to use the Hint tool twice
+  if (hintCount === 2) {
+    hintButton.disabled = true;
+  }
+});
+
+function revealCorrectPositionLetter() {
+  //Identify empty help-box slots
+  //const helpBoxIndexes = getEmptyHelpBoxIndexees();
+  //if (!helpBoxIndexes.length) return alert("No free help boxes left.");
+
+  //For simplicity, pick the first letter from the solution
+  const letterIndex = Math.floor(Math.random() * 5);
+  const letter = rightGuessString[letterIndex];
+
+  const targetBoxIndex = letterIndex;
+  const targetBox = helpBoxes[targetBoxIndex];
+  targetBox.textContent = letter;
+  targetBox.classList.add("green");
+}
+
+function revealWrongPositionLetter() {
+  //const helpBoxIndexes = getEmptyHelpBoxIndexees();
+  //if (!helpBoxIndexes.length) return alert("No free help boxes left.");
+
+  const letterIndex = Math.floor(Math.random() * 5);
+  const letter = rightGuessString[letterIndex];
+
+  // We'll pick a box that does not match the letter's actual index
+  /*const validBoxes = helpBoxIndexes.filter((i) => i != letterIndex);
+  if (!validBoxes.length) {
+    return alert("No valid boxes found for the wrong position letter!");
+  }*/
+  const targetBoxIndex = Math.floor(Math.random() * 5);
+  const targetBox = helpBoxes[targetBoxIndex];
+  targetBox.textContent = letter;
+  targetBox.classList.add("yellow");
+}
+
+function getEmptyHelpBoxIndexees() {
+  const freeIndexes = [];
+  helpBoxes.forEach((box, i) => {
+    if (!box.textContent) {
+      freeIndexes.push(i);
+    }
+  });
+  return freeIndexes;
+}

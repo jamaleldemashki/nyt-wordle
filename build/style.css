@@ -53,3 +53,88 @@ h1{
     cursor: pointer;
     text-transform: uppercase;
   }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    background: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  .title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #333;
+    letter-spacing: 2px;
+  }
+
+  .help-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .help-box {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.6rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+
+  .help-box.green {
+    background-color: #6aaa64; /* A green shade */
+    color: #fff;
+    border-color: #6aaa64;
+  }
+
+  .help-box.yellow {
+    background-color: #c9b458; /* A yellow shade */
+    color: #fff;
+    border-color: #c9b458;
+  }
+
+  .hint-button {
+    background-color: #ffffff;
+    border: 2px solid #333;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+  }
+  
+  .hint-button:hover {
+    background-color: #333;
+    color: #fff;
+    transform: scale(1.05);
+  }
+
+  .hint-button:active {
+    transform: scale(0.9);
+  }
+
+  /* When button is disabled, let's gray it out */
+  .hint-button:disabled {
+    background-color: #ffffff;
+    color: #999;
+    cursor: not-allowed;
+    transform: none;
+  }
