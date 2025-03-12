@@ -16,6 +16,8 @@ let hintCount = 0;
 const helpBoxes = document.querySelectorAll(".help-box");
 let hintButton = document.getElementById("hintButton");
 
+const descriptionHintButton = document.getElementById("descriptionHintButton");
+const descriptionContainer = document.getElementById("descriptionContainer");
 /*
 So what does this code do? 
 initBoard creates one row for each guess we give the user and creates 5 boxes for each row.
@@ -257,12 +259,12 @@ function revealWrongPositionLetter() {
   targetBox.classList.add("yellow");
 }
 
-function getEmptyHelpBoxIndexees() {
-  const freeIndexes = [];
-  helpBoxes.forEach((box, i) => {
-    if (!box.textContent) {
-      freeIndexes.push(i);
-    }
-  });
-  return freeIndexes;
-}
+descriptionHintButton.addEventListener("click", () => {
+  const describtion = "";
+  if (!describtion) {
+    descriptionContainer.textContent = "No describtion available.";
+  } else {
+    descriptionContainer.textContent = describtion;
+  }
+  descriptionContainer.style.display = "block";
+});
