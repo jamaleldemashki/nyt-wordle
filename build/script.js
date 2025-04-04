@@ -89,7 +89,7 @@ function deleteLetter() {
   nextLetter -= 1;
 }
 
-function checkGuess() {
+/*function checkGuess() {
   let row = document.getElementsByClassName("letter-row")[6 - guessesRemaining];
   let guessString = "";
   let rightGuess = Array.from(rightGuessString);
@@ -156,6 +156,84 @@ function checkGuess() {
       alert(`The right word was: "${rightGuessString}"`);
     }
   }
+}*/
+
+function showNotification(message) {
+  const notif = document.createElement("div");
+  notif.className = "notification";
+  notif.innerText = message;
+  document.body.appendChild(notif);
+
+  setTimeout(() => {
+    notif.remove();
+  }, 2000);
+}
+
+function checkGuess() {
+  let row = document.getElementsByClassName("letter-row")[6 - guessesRemaining];
+  let guessString = "";
+  let rightGuess = Array.from(rightGuessString);
+
+  for (const val of currentGuess) {
+    guessString += val;
+  }
+
+  if (guessString.length != 5) {
+    showNotification("Not enough letters!");
+    row.classList.add("shake");
+    setTimeout(() => row.classList.remove("shake"), 500);
+    return;
+  }
+
+  if (!WORDS.includes(guessString)) {
+    showNotification("Word not in list!");
+    row.classList.add("shake");
+    setTimeout(() => row.classList.remove("shake"), 500);
+    return;
+  }
+
+  for (let i = 0; i < 5; i++) {
+    let letterColor = "";
+    let box = row.children[i];
+    let letter = currentGuess[i];
+
+    let letterPosition = rightGuess.indexOf(currentGuess[i]);
+    if (letterPosition === -1) {
+      letterColor = "grey";
+    } else {
+      if (currentGuess[i] === rightGuess[i]) {
+        letterColor = "green";
+      } else {
+        letterColor = "yellow";
+      }
+      rightGuess[letterPosition] = "#";
+    }
+
+    let delay = 250 * i;
+    setTimeout(() => {
+      animateCSS(box, "flipInX");
+      box.style.backgroundColor = letterColor;
+      shadeKeyBoard(letter, letterColor);
+    }, delay);
+  }
+
+  // بعد ما تخلص كل الصناديق تنقلب، بنحسب الوقت ونعرض الإشعار إذا صح
+  let totalDelay = 250 * 5;
+
+  setTimeout(() => {
+    if (guessString === rightGuessString) {
+      showNotification("You guessed right! 🎉");
+      guessesRemaining = 0;
+    } else {
+      guessesRemaining -= 1;
+      currentGuess = [];
+      nextLetter = 0;
+
+      if (guessesRemaining === 0) {
+        showNotification(`Out of guesses! The word was: "${rightGuessString}"`);
+      }
+    }
+  }, totalDelay + 200); // نضيف شوي تأخير بعد آخر flip
 }
 
 function shadeKeyBoard(letter, color) {

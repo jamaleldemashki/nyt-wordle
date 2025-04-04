@@ -182,3 +182,36 @@ h1{
     /* Smooth transition for hover effect */
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
   }
+
+
+  .notification {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 18px;
+    z-index: 1000;
+    opacity: 0.95;
+    animation: fadeInOut 2s ease-in-out;
+  }
+
+  @keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(-20px) translateX(-50%); }
+    10%, 90% { opacity: 0.95; transform: translateY(0) translateX(-50%); }
+    100% { opacity: 0; transform: translateY(-20px) translateX(-50%); }
+  }
+
+  .shake {
+    animation: shake 0.5s;
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-10px); }
+    40%, 80% { transform: translateX(10px); }
+  }
+
