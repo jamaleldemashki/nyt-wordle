@@ -51,5 +51,4 @@ The "Get Description" feature returned the clue:
 Based on this hint and description, the user correctly guessed the word: "DEEDS" 🎉
 
 ![Wordle+ Example](./example2.png)
-```
 
