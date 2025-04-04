@@ -259,12 +259,26 @@ function revealWrongPositionLetter() {
   targetBox.classList.add("yellow");
 }
 
-descriptionHintButton.addEventListener("click", () => {
-  const describtion = "";
-  if (!describtion) {
-    descriptionContainer.textContent = "No describtion available.";
-  } else {
-    descriptionContainer.textContent = describtion;
+descriptionHintButton.addEventListener("click", async () => {
+  const word = rightGuessString; // The word to look up
+  const apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
+
+  try {
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error(`No definition found for "${word}".`);
+    }
+    const data = await response.json();
+    const definition = data[0]?.meanings[0]?.definitions[0]?.definition;
+
+    if (definition) {
+      descriptionContainer.textContent = definition;
+    } else {
+      descriptionContainer.textContent = "No definition available.";
+    }
+  } catch (error) {
+    descriptionContainer.textContent = error.message;
+  } finally {
+    descriptionContainer.style.display = "block";
   }
-  descriptionContainer.style.display = "block";
 });
