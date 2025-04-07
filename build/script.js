@@ -217,7 +217,7 @@ function checkGuess() {
     }, delay);
   }
 
-  // بعد ما تخلص كل الصناديق تنقلب، بنحسب الوقت ونعرض الإشعار إذا صح
+  
   let totalDelay = 250 * 5;
 
   setTimeout(() => {
@@ -233,7 +233,7 @@ function checkGuess() {
         showNotification(`Out of guesses! The word was: "${rightGuessString}"`);
       }
     }
-  }, totalDelay + 200); // نضيف شوي تأخير بعد آخر flip
+  }, totalDelay + 200); 
 }
 
 function shadeKeyBoard(letter, color) {
